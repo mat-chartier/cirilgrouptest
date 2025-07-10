@@ -69,7 +69,7 @@ public class ForestFireSimulator {
         }
 
         // Set the initial burning cells
-        for (int[] cell : config.initialBurnedCells) {
+        for (int[] cell : config.initialBurningCells) {
             if (cell[0] >= 0 && cell[0] < config.height && cell[1] >= 0 && cell[1] < config.width) {
                 initialStates[cell[0]][cell[1]] = LandState.BURNING;
             }
