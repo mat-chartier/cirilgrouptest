@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  getNextSimulationStep() {
-    return this.http.get<{ msg: string }>('http://localhost:8080/api/next');
+  getNextSimulationStep(states: any[][] | null = []): any {
+    return this.http.post<{ msg: string }>('http://localhost:8080/api/next', { states });
   }
 }

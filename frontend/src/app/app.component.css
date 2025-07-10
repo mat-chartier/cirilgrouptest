@@ -1,0 +1,28 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.row {
+  display: flex;
+  gap: 1px;
+}
+
+.cell {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+}
+
+.alive {
+  background-color: green;
+}
+
+.burning {
+  background-color: orange;
+}
+
+.burned {
+  background-color: black;
+}

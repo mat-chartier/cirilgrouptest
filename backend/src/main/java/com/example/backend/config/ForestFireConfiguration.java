@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ForestFireConfiguration {
-    public final int width = 2;
-    public final int height = 2;
-    public final float propagationProbability = 1f;
-    public final int[][] initialBurnedCells = {{0, 0}};
+    public final int width = 50;
+    public final int height = 30;
+    public final float propagationProbability = 0.7f;
+    public final int[][] initialBurnedCells = {{0, 0}, {10, 10}, {20, 20}, {29, 30}, {29, 49}};
 }

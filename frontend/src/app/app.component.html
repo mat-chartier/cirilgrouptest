@@ -1,8 +1,16 @@
 <html>
-  <body>
-    <h1>Simulation de feu de forêt</h1>
-    <div id="simulation-steps">
-      {{ simulationSteps }}
+
+<body>
+  <h1>Simulation de feu de forêt</h1>
+  <div>
+    <input type="button" value="Démarrer la simulation" (click)="startSimulation()" />
+    <div class="board">
+      <div *ngFor="let row of board" class="row">
+        <div *ngFor="let cell of row" class="cell" [ngClass]="cell.toLowerCase()">
+        </div>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
