@@ -33,24 +33,22 @@ public class ForestFireSimulator {
                 LandState currentCell = currentStates[x][y];
                 if (currentCell == LandState.BURNING) {
                     nextStates[x][y] = LandState.BURNED;
-                    if (Math.random() < propagationProbability) {
-                        // Set fire to all 4 neighboring cells
-                        if (x > 0 && currentStates[x - 1][y] == LandState.ALIVE) {
-                            nextStates[x - 1][y] = LandState.BURNING;
-                            cellsStillBurning = true;
-                        }
-                        if (x < currentStates.length - 1 && currentStates[x + 1][y] == LandState.ALIVE) {
-                            nextStates[x + 1][y] = LandState.BURNING;
-                            cellsStillBurning = true;
-                        }
-                        if (y > 0 && currentStates[x][y - 1] == LandState.ALIVE) {
-                            nextStates[x][y - 1] = LandState.BURNING;
-                            cellsStillBurning = true;
-                        }
-                        if (y < currentStates[x].length - 1 && currentStates[x][y + 1] == LandState.ALIVE) {
-                            nextStates[x][y + 1] = LandState.BURNING;
-                            cellsStillBurning = true;
-                        }
+                    // Set fire to all 4 neighboring cells depending on the propagation probability
+                    if (x > 0 && currentStates[x - 1][y] == LandState.ALIVE && Math.random() < propagationProbability) {
+                        nextStates[x - 1][y] = LandState.BURNING;
+                        cellsStillBurning = true;
+                    }
+                    if (x < currentStates.length - 1 && currentStates[x + 1][y] == LandState.ALIVE && Math.random() < propagationProbability) {
+                        nextStates[x + 1][y] = LandState.BURNING;
+                        cellsStillBurning = true;
+                    }
+                    if (y > 0 && currentStates[x][y - 1] == LandState.ALIVE && Math.random() < propagationProbability) {
+                        nextStates[x][y - 1] = LandState.BURNING;
+                        cellsStillBurning = true;
+                    }
+                    if (y < currentStates[x].length - 1 && currentStates[x][y + 1] == LandState.ALIVE && Math.random() < propagationProbability) {
+                        nextStates[x][y + 1] = LandState.BURNING;
+                        cellsStillBurning = true;
                     }
                 }
             }
@@ -71,7 +69,7 @@ public class ForestFireSimulator {
         }
 
         // Set the initial burning cells
-        for (int[] cell : config.initialBurnedCells) {
+        for (int[] cell : config.initialBurningCells) {
             if (cell[0] >= 0 && cell[0] < config.height && cell[1] >= 0 && cell[1] < config.width) {
                 initialStates[cell[0]][cell[1]] = LandState.BURNING;
             }
