@@ -60,16 +60,19 @@ public class ForestFireSimulator {
 
     public SimulationStep getInitialState(ForestFireConfiguration config) {
         // Initialize the forest with ALIVE cells
-        LandState[][] initialStates = new LandState[config.width][config.height];
-        for (int x = 0; x < config.width; x++) {
-            for (int y = 0; y < config.height; y++) {
+        // To be close to the later visual representation, the 2D array is organized as [height][width]
+        // This means that the first index is the row (y-coordinate) and the second index
+        // is the column (x-coordinate) in the visual representation.
+        LandState[][] initialStates = new LandState[config.height][config.width];
+        for (int x = 0; x < config.height; x++) {
+            for (int y = 0; y < config.width; y++) {
                 initialStates[x][y] = LandState.ALIVE;
             }
         }
 
         // Set the initial burning cells
         for (int[] cell : config.initialBurnedCells) {
-            if (cell[0] >= 0 && cell[0] < config.width && cell[1] >= 0 && cell[1] < config.height) {
+            if (cell[0] >= 0 && cell[0] < config.height && cell[1] >= 0 && cell[1] < config.width) {
                 initialStates[cell[0]][cell[1]] = LandState.BURNING;
             }
         }

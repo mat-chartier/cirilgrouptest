@@ -30,10 +30,11 @@ public class SimulationController {
     @PostMapping("/next")
     public String getNextSimulationStep(@RequestBody String simulationStateJson) {
         Gson gson = new GsonBuilder().create();
-        if (simulationStateJson == null || simulationStateJson.isEmpty()) {
-             return gson.toJson(forestFireSimulator.getInitialState(forestFireConfiguration));
-        }
         ForestFireSimulator.LandState[][] currentStates = gson.fromJson(simulationStateJson, SimulationInput.class).getStates();
+        
+        if (currentStates == null) {
+            return gson.toJson(forestFireSimulator.getInitialState(forestFireConfiguration));
+        }
         ForestFireSimulator.SimulationStep nextStep = forestFireSimulator.getNextStates(currentStates, forestFireConfiguration.propagationProbability);
         return gson.toJson(nextStep);
     }
